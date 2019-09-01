@@ -35,6 +35,11 @@ class ArrowConan(ConanFile):
     _source_subfolder = "source_subfolder"
     _build_subfolder = "build_subfolder"
 
+    requires = (
+        "Boost/1.70.0@camposs/stable",
+        "flatbuffers/1.11.0@camposs/stable",
+        )
+
     def config_options(self):
         if self.settings.os == 'Windows':
             del self.options.fPIC
@@ -56,6 +61,9 @@ class ArrowConan(ConanFile):
             cmake.definitions["ARROW_PLASMA"] = True
         if self.options.with_cuda:
             cmake.definitions["ARROW_CUDA"] = True
+
+        cmake.definitions["FLATBUFFERS_INCLUDE_DIR"] = ":".join(self.deps_cpp_info["flatbuffers"].include_paths)
+        cmake.definitions["FLATBUFFERS_LIB"] = str(self.deps_cpp_info["flatbuffers"].libs[0])
 
         # cmake.definitions["ARROW_BOOST_USE_SHARED"] = False
         # cmake.definitions["ARROW_BUILD_BENCHMARKS"] = False
