@@ -6,7 +6,7 @@ import os
 
 class ArrowConan(ConanFile):
     name = "arrow"
-    version = "0.14.1"
+    version = "1.0.1"
     description = "Apache Arrow is a cross-language development platform for in-memory data."
     topics = ("conan", "arrow", "memory")
     url = "https://github.com/ulricheck/conan-arrow"
