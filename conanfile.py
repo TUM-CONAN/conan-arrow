@@ -6,12 +6,12 @@ import os
 
 class ArrowConan(ConanFile):
     name = "arrow"
-    version = "1.0.1"
+    version = "5.0.0"
     description = "Apache Arrow is a cross-language development platform for in-memory data."
     topics = ("conan", "arrow", "memory")
-    url = "https://github.com/ulricheck/conan-arrow"
+    url = "https://github.com/TUM-CONAN/conan-arrow"
     homepage = "https://github.com/apache/arrow"
-    author = "Bincrafters <bincrafters@gmail.com>"
+    author = "Ulrich Eck <ulrich.eck@tum.de>"
     license = "Apache-2.0"
     exports = ["LICENSE.md"]
     exports_sources = ["CMakeLists.txt"]
@@ -46,7 +46,7 @@ class ArrowConan(ConanFile):
 
     def requirements(self):
         if self.options.with_cuda:
-            self.requires("cuda_dev_config/1.0@camposs/stable")
+            self.requires("cuda_dev_config/[>=2.0]@camposs/stable")
 
     def source(self):
         source_url = "https://github.com/apache/arrow"
