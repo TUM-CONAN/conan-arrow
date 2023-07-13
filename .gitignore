@@ -46,3 +46,4 @@ tmp/
 .vscode/*
 ## emacs
 *~
+test_package/CMakeUserPresets.json
