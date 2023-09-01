@@ -319,7 +319,7 @@ class ArrowConan(ConanFile):
         if self.options.with_zlib:
             self.requires("zlib/1.2.13")
         if self.options.with_zstd:
-            self.requires("zstd/1.5.2")
+            self.requires("zstd/1.5.5")
         if self._with_re2():
             self.requires("re2/20220601")
         if self._with_utf8proc():
