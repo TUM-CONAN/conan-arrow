@@ -13,7 +13,7 @@ required_conan_version = ">=1.53.0"
 
 class ArrowConan(ConanFile):
     name = "arrow"
-    version = "16.1.0"
+    version = "12.0.1"
     description = "Apache Arrow is a cross-language development platform for in-memory data"
     license = ("Apache-2.0",)
     url = "https://github.com/conan-io/conan-center-index"
@@ -283,7 +283,7 @@ class ArrowConan(ConanFile):
         if self.options.with_mimalloc:
             self.requires("mimalloc/1.7.6")
         if self._with_boost():
-            self.requires("boost/1.85.0")
+            self.requires("boost/1.85.0", transitive_headers=True)
         if self._with_gflags():
             self.requires("gflags/2.2.2")
         if self._with_glog():
