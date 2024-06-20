@@ -13,7 +13,7 @@ required_conan_version = ">=1.53.0"
 
 class ArrowConan(ConanFile):
     name = "arrow"
-    version = "12.0.0"
+    version = "16.1.0"
     description = "Apache Arrow is a cross-language development platform for in-memory data"
     license = ("Apache-2.0",)
     url = "https://github.com/conan-io/conan-center-index"
@@ -64,6 +64,7 @@ class ArrowConan(ConanFile):
         "with_bz2": [True, False],
         "with_lz4": [True, False],
         "with_snappy": [True, False],
+        "with_thrift": [True, False],
         "with_zlib": [True, False],
         "with_zstd": [True, False],
     }
@@ -71,7 +72,7 @@ class ArrowConan(ConanFile):
         "shared": False,
         "fPIC": True,
         "gandiva": False,
-        "parquet": "auto",
+        "parquet": True,
         "skyhook": False,
         "substrait": False,
         "acero": False,
@@ -110,6 +111,7 @@ class ArrowConan(ConanFile):
         "with_utf8proc": "auto",
         "with_lz4": False,
         "with_snappy": False,
+        "with_thrift": True,
         "with_zlib": False,
         "with_zstd": False,
     }
@@ -244,7 +246,7 @@ class ArrowConan(ConanFile):
 
     def _with_thrift(self, required=False):
         # No self.options.with_thift exists
-        return bool(required or self._parquet())
+        return bool(required or self.options.with_thrift or self._parquet())
 
     def _with_utf8proc(self, required=False):
         if required or self.options.with_utf8proc == "auto":
@@ -281,7 +283,7 @@ class ArrowConan(ConanFile):
         if self.options.with_mimalloc:
             self.requires("mimalloc/1.7.6")
         if self._with_boost():
-            self.requires("boost/1.81.0")
+            self.requires("boost/1.85.0")
         if self._with_gflags():
             self.requires("gflags/2.2.2")
         if self._with_glog():
